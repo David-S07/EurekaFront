@@ -17,6 +17,16 @@
             <img src="/assets/svg/email-icon.svg"/>
         </app-primary-input>
         <app-primary-input
+            formControlName="cargo"
+            inputName="cargo"
+            type="text"
+            label="cargo"
+            placeholder="seu cargo"
+        >
+            <img src="/assets/svg/email-icon.svg"/>
+        </app-primary-input>
+
+        <app-primary-input
             formControlName="email"
             inputName="email"
             type="email"
@@ -29,17 +39,18 @@
             formControlName="password"
             inputName="password"
             type="password"
-            label="Senha"
+            label="Digite sua senha"
         >
-        <img src="/assets/svg/password-icon.svg"/>
-    </app-primary-input>
-    <app-primary-input
-        formControlName="passwordConfirm"
-        inputName="passwordConfirm"
-        type="password"
-        label="Confirme sua senha"
-    >
-        <img src="/assets/svg/password-icon.svg"/>
-    </app-primary-input>
+            <img src="/assets/svg/password-icon.svg"/>
+        </app-primary-input>
+
+        <app-primary-input
+            formControlName="passwordConfirm"
+            inputName="passwordConfirm"
+            type="password"
+            label="Confirme sua senha"
+        >
+            <img src="/assets/svg/password-icon.svg"/>
+        </app-primary-input>
     </form>
 </app-default-login-layout>

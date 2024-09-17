@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 
 interface SignupForm {
   name: FormControl,
+  cargo: FormControl,
   email: FormControl,
   password: FormControl,
   passwordConfirm: FormControl
@@ -37,14 +38,31 @@ export class SignUpComponent {
   ){
     this.signupForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      cargo: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       passwordConfirm: new FormControl('', [Validators.required, Validators.minLength(6)]),
     })
   }
 
+  idListaCargos: number = 0;
+  listaCargos = [
+    {
+      nome: 'Analista',
+      id: '1',
+    },
+    {
+      nome: 'Revisor',
+      id: '2',
+    }, 
+    {
+      nome: 'Aprovador',
+      id: '3',
+    },
+  ];
+
   submit(){
-    this.loginService.signup(this.signupForm.value.name, this.signupForm.value.email, this.signupForm.value.password).subscribe({
+    this.loginService.signup(this.signupForm.value.name, this.signupForm.value.email, this.signupForm.value.password, this.signupForm.value.cargo).subscribe({
       next: () => this.toastService.success("Login feito com sucesso!"),
       error: () => this.toastService.error("Erro inesperado! Tente novamente mais tarde")
     })
