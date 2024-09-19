@@ -1,0 +1,85 @@
+<h1 class="mt-4">Envio de roteiros</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">{{ cliente.id ? 'Edição' : 'Tem uma história incrível na cabeça ? Envie seu roteiro para nós e realize seu sonho de ver sua obra nas telonas!'}}</li>
+</ol>
+<div class="container">
+
+  <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-success" role="alert" *ngIf="success == true">
+          Roteiro Salvo/atualizado com Sucesso
+        </div>
+        <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+          {{ erro }}
+        </div>
+      </div>
+      <div class="row" *ngIf="cliente.id">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Id: </label>
+            <input type="text" name="id" [ngModel]="cliente.id" class="form-control" disabled="true">
+          </div>
+        </div>
+      </div>
+    </div>  
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Nome: * </label>
+          <input required #Name="ngModel" type="text" class="form-control" [(ngModel)]="cliente.name" name="name">
+          <div *ngIf="!Name.valid && Name.touched" class="alert alert-danger" role="alert">
+            Campo Nome é obrigatório
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Email: * </label>
+          <input required #Email="ngModel" type="text" class="form-control" [(ngModel)]="cliente.email" name="email">
+          <div *ngIf="!Email.valid && Email.touched" class="alert alert-danger" role="alert">
+            Campo Email é obrigatório
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Telefone: * </label>
+          <input required  maxlength="11" minlength="10" #Telefone="ngModel" type="tel" class="form-control" [(ngModel)]="cliente.telefone"
+            name="telefone">
+          <div *ngIf="!Telefone.valid && Telefone.touched" class="alert alert-danger" role="alert">
+            Campo Telefone é obrigatório
+          </div>
+        </div>
+      </div>
+    </div> 
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Nos conte sua história * </label>
+          <textarea type="text" maxlength="1000" minlength="50" placeholder="Digite seu roteiro" required
+            #Roteiro="ngModel" name="roteiro" [(ngModel)]="cliente.roteiro" class="form-control"></textarea>
+        </div>
+        <div *ngIf="Roteiro.invalid && Roteiro.touched "
+                class="alert alert-danger" role="alert">
+                    Escrever seu roteiro é obrigatório, min 50 caracteres e maximo 1000
+        </div>
+      </div>  
+
+    <div class="row"></div>
+      <div class="col-md-3">
+          <button type="submit" class="btn btn-success" *ngIf="!cliente.id"  [disabled]="!clienteForm.valid" >
+              <i class="fa fa-save"></i> Salvar
+          </button>
+          <button type="submit" class="btn btn-primary" *ngIf="cliente.id" [disabled]="!clienteForm.valid">
+              <i class="fa fa-sync-alt"></i> Atualizar
+          </button>
+          <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
+              <i class="fa fa-arrow-alt-circle-left"></i>  Voltar
+          </button>
+      </div>
+    </div> 
+        
+    
+  </form>
+</div>

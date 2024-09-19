@@ -3,6 +3,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignUpComponent } from './pages/signup/signup.component';
 import { UserComponent } from './pages/user/user.component';
 import { AuthGuard } from './services/auth-guard.service';
+import { ClienteComponent } from './pages/cliente/cliente.component';
+import { AppComponent } from './app.component';
 
 export const routes: Routes = [
     {
@@ -14,8 +16,16 @@ export const routes: Routes = [
         component: SignUpComponent
     },
     {
+        path: "cliente",
+        component: ClienteComponent
+    },
+    {
         path: "user",
         component: UserComponent,
         canActivate: [AuthGuard]
+    },
+    {
+        path: "index",
+        component: AppComponent
     }
 ];

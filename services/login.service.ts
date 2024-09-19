@@ -29,4 +29,14 @@ export class LoginService {
       })
     )
   }
+
+  cliente(name: string, email: string, telefone: string, roteiro: string){
+    return this.httpClient.post<LoginResponse>(this.apiUrl + "/cliente", { name, email, telefone, roteiro }).pipe(
+      tap((value) => {
+        sessionStorage.setItem("auth-token", value.token)
+        sessionStorage.setItem("username", value.name)
+      })
+    )
+  }
+
 }
